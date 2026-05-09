@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EgoMemReason: A Memory-driven Reasoning Benchmark for Long-Horizon Egocentric Video Understanding</title>
+    <meta name="description" content="EgoMemReason is a comprehensive benchmark that systematically evaluates week-long egocentric video understanding through the lens of memory-driven reasoning: entity, event, and behavior.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css?v=2">
+</head>
+<body>
+
+<!-- ===== Hero ===== -->
+<section class="hero">
+    <div class="container">
+        <h1 class="title"><span class="title-name">EgoMemReason:</span> A Memory-driven Reasoning Benchmark<br>for Long-Horizon Egocentric Video Understanding</h1>
+        <div class="authors">
+            <span class="author"><a href="#">Ziyang Wang</a><sup>1*</sup></span>,
+            <span class="author"><a href="#">Yue Zhang</a><sup>1*</sup></span>,
+            <span class="author"><a href="#">Shoubin Yu</a><sup>1</sup></span>,
+            <span class="author"><a href="#">Ce Zhang</a><sup>1</sup></span>,
+            <span class="author"><a href="#">Zengqi Zhao</a><sup>1</sup></span>,
+            <br>
+            <span class="author"><a href="#">Jaehong Yoon</a><sup>2</sup></span>,
+            <span class="author"><a href="#">Hyunji Lee</a><sup>1</sup></span>,
+            <span class="author"><a href="#">Gedas Bertasius</a><sup>1</sup></span>,
+            <span class="author"><a href="#">Mohit Bansal</a><sup>1</sup></span>
+        </div>
+        <div class="affiliations">
+            <span><sup>1</sup>UNC Chapel Hill</span>
+            <span><sup>2</sup>NTU Singapore</span>
+        </div>
+        <p class="equal-contrib"><sup>*</sup>Equal contribution</p>
+        <div class="links">
+            <a href="#" class="btn" target="_blank"><i class="fa-solid fa-file-lines"></i> Paper</a>
+            <a href="#" class="btn btn-ghost" target="_blank"><i class="fa-brands fa-github"></i> Code</a>
+            <a href="#" class="btn btn-hf" target="_blank"><i class="fa-solid fa-database"></i> Benchmark</a>
+        </div>
+    </div>
+</section>
+
+<!-- ===== Overview / Teaser ===== -->
+<section class="section" id="overview">
+    <div class="container">
+        <div class="figure-container">
+            <img src="static/teaser.png" alt="EgoMemReason teaser: queries over a week-long egocentric video timeline spanning entity, event, and behavior memory." class="figure-img">
+            <p class="figure-caption">
+                <strong>Figure 1: Illustration of EgoMemReason for week-long egocentric video memory.</strong>
+                Given a query at a specific time, answering requires retrieving and aggregating evidence from
+                multiple temporally distant observations across days. We categorize memory into three types:
+                <span style="color:var(--entity)"><strong>entity memory</strong></span> (tracking persistent objects and states),
+                <span style="color:var(--event)"><strong>event memory</strong></span> (ordering and linking events), and
+                <span style="color:var(--behavior)"><strong>behavior memory</strong></span> (inferring patterns).
+                Together they support multi-type, long-range, multi-evidence reasoning.
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- ===== Abstract ===== -->
+<section class="section section-alt" id="abstract">
+    <div class="container">
+        <h2 class="section-title">Abstract</h2>
+        <p class="abstract-text">
+            Next-generation visual assistants such as smart glasses, embodied agents, and always-on
+            life-logging systems must reason over an entire day or more of continuous visual experience.
+            In such ultra-long video settings, relevant information is sparsely distributed across hours or days,
+            making <strong>memory a fundamental challenge</strong>: models must accumulate information over time,
+            recall previously observed states, track temporal order, and abstract recurring patterns from past experience.
+            However, existing week-long video benchmarks are still primarily designed for perception and recognition,
+            such as locating a specific moment or summarizing global content, rather than reasoning that
+            requires accumulating and integrating evidence across multiple days.
+            To address this gap, we introduce <strong>EgoMemReason</strong>, a comprehensive benchmark that systematically
+            evaluates week-long egocentric video understanding through the lens of <strong>memory-driven reasoning</strong>.
+            EgoMemReason evaluates three complementary memory types: <strong>entity memory</strong>, tracking how object states
+            evolve and change across days; <strong>event memory</strong>, recalling and ordering activities separated by hours
+            or days; and <strong>behavior memory</strong>, abstracting recurring patterns from sparse, repeated observations
+            over the whole week period.
+            EgoMemReason comprises <strong>500 questions</strong> across three memory types and six core challenges,
+            with an average of 5.1 video segments of evidence per question and 25.9 hours of memory backtracking.
+            We evaluate EgoMemReason on <strong>17 methods</strong> across MLLMs and agentic frameworks, revealing that even the best
+            model achieves only <strong>39.6% overall accuracy</strong>. Further analysis shows that the three memory types
+            fail for distinct reasons and that performance degrades as evidence spans longer temporal horizons,
+            revealing that long-horizon memory remains far from solved. We believe EgoMemReason establishes a strong
+            foundation for evaluating and advancing long-context, memory-aware multimodal systems.
+        </p>
+    </div>
+</section>
+
+<!-- ===== Comparison with prior work ===== -->
+<section class="section" id="comparison">
+    <div class="container">
+        <h2 class="section-title">Long-Horizon by Design</h2>
+        <p class="section-description">
+            EgoMemReason pushes both <em>temporal certification</em> (the time span one must search to locate all
+            ground-truth evidence) and <em>evidence per question</em> well beyond prior week-long egocentric benchmarks.
+        </p>
+
+        <div class="comparison-grid">
+            <div class="figure-container">
+                <img src="static/bubble.png" alt="EgoMemReason vs. prior week-long video benchmarks: temporal certification (hours) vs. evidence per question." class="figure-img">
+            </div>
+            <div class="table-wrapper">
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Benchmark</th>
+                            <th>Evidence/Q</th>
+                            <th>Temporal Cert. (h)</th>
+                            <th>Memory Types</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>TeleEgo</td>
+                            <td>~1</td>
+                            <td>~5</td>
+                            <td>Single-moment</td>
+                        </tr>
+                        <tr>
+                            <td>EgoLifeQA</td>
+                            <td>~1</td>
+                            <td>~7</td>
+                            <td>Short-interval</td>
+                        </tr>
+                        <tr>
+                            <td>MMLifelong-test</td>
+                            <td>~2</td>
+                            <td>~8</td>
+                            <td>Retrieval-centric</td>
+                        </tr>
+                        <tr>
+                            <td>EgoMem</td>
+                            <td>~2.5</td>
+                            <td>~7</td>
+                            <td>Single-event</td>
+                        </tr>
+                        <tr>
+                            <td>MA-EgoQA</td>
+                            <td>~3</td>
+                            <td>~12</td>
+                            <td>Cross-event</td>
+                        </tr>
+                        <tr class="highlight-row">
+                            <td><strong>EgoMemReason (Ours)</strong></td>
+                            <td><strong>5.1</strong></td>
+                            <td><strong>25.9</strong></td>
+                            <td><strong>Entity / Event / Behavior</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <p class="table-caption">
+            <strong>Figure 2:</strong> Comparison with existing week-long video benchmarks. The x-axis shows the average number of distinct
+            video segments needed to answer a question (evidence), and the y-axis shows temporal certification in hours
+            (the total video duration one must search to locate all ground-truth evidence). Bubble size is proportional
+            to the number of questions. EgoMemReason exceeds the strongest prior benchmark by <strong>2&times; in evidence count</strong>
+            and <strong>2&times; in temporal certification</strong>.
+        </p>
+    </div>
+</section>
+
+<!-- ===== Tasks: three memory types ===== -->
+<section class="section section-alt" id="tasks">
+    <div class="container">
+        <h2 class="section-title">Three Memory Types &middot; Six Core Challenges</h2>
+        <p class="section-description">
+            We decompose week-long memory into three complementary types inspired by cognitive science,
+            each operationalized into two tasks targeting distinct reasoning demands.
+        </p>
+
+        <div class="task-grid">
+            <div class="memory-card entity">
+                <div class="memory-icon"><i class="fa-solid fa-cube"></i></div>
+                <span class="memory-tag">Entity Memory</span>
+                <h3>Track how objects evolve</h3>
+                <p>Re-identify entities across days as they appear, disappear, and resurface under different
+                lighting, viewpoints, or locations.</p>
+                <ul class="subtask-list">
+                    <li class="subtask">
+                        <strong>Cumulative State Tracking</strong>
+                        Track how an entity's location or condition changes across observations separated by hours or days.
+                    </li>
+                    <li class="subtask">
+                        <strong>Temporal Counting</strong>
+                        Count distinct instances of a category up to a query time, distinguishing repeated occurrences from new ones.
+                    </li>
+                </ul>
+            </div>
+
+            <div class="memory-card event">
+                <div class="memory-icon"><i class="fa-solid fa-timeline"></i></div>
+                <span class="memory-tag">Event Memory</span>
+                <h3>Order and link events</h3>
+                <p>Retrieve, temporally organize, and relate discrete events from a rich stream of activities
+                that unfold across hours or days.</p>
+                <ul class="subtask-list">
+                    <li class="subtask">
+                        <strong>Event Ordering</strong>
+                        Arrange events drawn from different days into the correct temporal order across large temporal gaps.
+                    </li>
+                    <li class="subtask">
+                        <strong>Event Linking</strong>
+                        Identify the event matching a set of contextual constraints (location, activity, time-of-day).
+                    </li>
+                </ul>
+            </div>
+
+            <div class="memory-card behavior">
+                <div class="memory-icon"><i class="fa-solid fa-chart-line"></i></div>
+                <span class="memory-tag">Behavior Memory</span>
+                <h3>Abstract repeated patterns</h3>
+                <p>Distill higher-level priors from repeated observations &mdash; patterns that no single observation can reveal.</p>
+                <ul class="subtask-list">
+                    <li class="subtask">
+                        <strong>Spatial Preference Inference</strong>
+                        Infer recurring spatial habits (e.g., where a person typically performs a given activity).
+                    </li>
+                    <li class="subtask">
+                        <strong>Activity Pattern Inference</strong>
+                        Predict likely next states based on learned routines (e.g., where the person goes after lunch).
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="figure-container" style="margin-top: 40px;">
+            <img src="static/tasks.png" alt="Examples of the six core challenges across three memory types in EgoMemReason." class="figure-img">
+            <p class="figure-caption">
+                <strong>Figure 3: Overview of the six core challenges across three memory types in EgoMemReason.</strong>
+                Within each example, the week-long timeline shows evidence frames sampled at different timestamps
+                (e.g., D1, D2 denote days, and Q-D5 indicates the query timestamp on Day 5, highlighted by a dashed box).
+                Green frames indicate relevant evidence and red frames indicate distracting observations.
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- ===== Construction Pipeline + Stats ===== -->
+<section class="section" id="pipeline">
+    <div class="container">
+        <h2 class="section-title">Benchmark Construction</h2>
+        <p class="section-description">
+            EgoMemReason is built on the EgoLife dataset through a four-stage pipeline that ensures every question is
+            <em>temporally grounded</em>, <em>visually verified</em>, and <em>genuinely challenging</em>.
+            Only 15% of initial candidates survive the combined filtering and human verification stages.
+        </p>
+
+        <div class="pipeline-grid">
+            <div class="pipeline-step">
+                <span class="step-num">Stage 1</span>
+                <h4>Evidence Preparation</h4>
+                <p>Convert week-long video into structured evidence: clip-level object-centric captions plus
+                hierarchical event summaries at three temporal granularities.</p>
+            </div>
+            <div class="pipeline-step">
+                <span class="step-num">Stage 2</span>
+                <h4>Memory-Centric QA Generation</h4>
+                <p>Task-specific generators for entity / event / behavior produce candidate multiple-choice
+                questions, each constrained to a designated query timestamp.</p>
+            </div>
+            <div class="pipeline-step">
+                <span class="step-num">Stage 3</span>
+                <h4>Automatic Filtering</h4>
+                <p>Blind LLM tests reject text-leakage; we enforce visual grounding and a minimum 2-hour temporal
+                gap across supporting evidence.</p>
+            </div>
+            <div class="pipeline-step">
+                <span class="step-num">Stage 4</span>
+                <h4>Human Verification</h4>
+                <p>Six annotators review each surviving question (~20 min each), validating answers and
+                iteratively refining distractors and visual grounding.</p>
+            </div>
+        </div>
+
+        <div class="pipeline-bottom">
+            <div class="figure-container">
+                <img src="static/pipeline.png" alt="Four-stage benchmark construction pipeline." class="figure-img">
+                <p class="figure-caption" style="text-align:center;"><strong>Figure 4:</strong> Overview of the 4-stage benchmark construction pipeline.</p>
+            </div>
+            <div class="pipeline-stats">
+                <h3>Dataset Composition</h3>
+                <div class="figure-container" style="margin-bottom: 14px;">
+                    <img src="static/donut.png" alt="EgoMemReason dataset composition by memory type." class="figure-img">
+                </div>
+                <ul>
+                    <li><strong>500</strong> multiple-choice questions</li>
+                    <li><strong>200</strong> Entity &middot; <strong>200</strong> Event &middot; <strong>100</strong> Behavior</li>
+                    <li><strong>6</strong> core capabilities, all human-verified</li>
+                    <li>Avg. <strong>5.1</strong> evidence segments &middot; <strong>25.9 h</strong> backtracking</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== Results ===== -->
+<section class="section section-alt" id="results">
+    <div class="container">
+        <h2 class="section-title">Results</h2>
+        <p class="section-description">
+            We evaluate <strong>17 systems</strong> spanning general-purpose MLLMs, video-specific MLLMs, and agentic
+            video frameworks. The strongest model reaches only 39.6% overall &mdash; long-horizon memory is far from solved.
+        </p>
+
+        <div class="results-summary">
+            <div class="stat-card">
+                <div class="stat-number">17</div>
+                <div class="stat-label">Methods<br>Evaluated</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">39.6%</div>
+                <div class="stat-label">Best Overall<br>(Gemini-3-Flash)</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">50.0%</div>
+                <div class="stat-label">Best Single Capability<br>(Counting / Spatial)</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">25.9 h</div>
+                <div class="stat-label">Avg. Memory<br>Backtracking</div>
+            </div>
+        </div>
+
+        <div class="table-wrapper" style="margin-top: 16px;">
+            <table class="simple-table main-results-table">
+                <thead>
+                    <tr>
+                        <th rowspan="2">Method</th>
+                        <th colspan="2">Entity Memory</th>
+                        <th colspan="2">Event Memory</th>
+                        <th colspan="2">Behavior Memory</th>
+                        <th rowspan="2">Overall</th>
+                    </tr>
+                    <tr>
+                        <th>Tracking</th>
+                        <th>Counting</th>
+                        <th>Ordering</th>
+                        <th>Linking</th>
+                        <th>Spatial</th>
+                        <th>Activity</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="group-row"><td colspan="8">Random</td></tr>
+                    <tr><td>Random</td><td>19.6</td><td>16.7</td><td>11.1</td><td>17.3</td><td>19.3</td><td>19.2</td><td>16.8</td></tr>
+
+                    <tr class="group-row"><td colspan="8"><em>General MLLMs</em></td></tr>
+                    <tr><td>InternVL3.5-8B</td><td>23.0</td><td>29.0</td><td>23.0</td><td>27.0</td><td>34.0</td><td>42.0</td><td>28.0</td></tr>
+                    <tr><td>Qwen-3-VL-8B</td><td>35.0</td><td>28.0</td><td>23.0</td><td>21.0</td><td>40.0</td><td>42.0</td><td>29.6</td></tr>
+                    <tr><td>InternVL3.5-38B</td><td>33.0</td><td>40.0</td><td>27.0</td><td>24.0</td><td>46.0</td><td>32.0</td><td>32.6</td></tr>
+                    <tr><td>Qwen-3-VL-30B-A3B</td><td>36.0</td><td><u>48.0</u></td><td>25.0</td><td>26.0</td><td>40.0</td><td>30.0</td><td>34.0</td></tr>
+                    <tr><td>Qwen-3-VL-32B</td><td>35.0</td><td>46.0</td><td>28.0</td><td>27.0</td><td><strong>50.0</strong></td><td><u>46.0</u></td><td>36.8</td></tr>
+                    <tr><td>GPT-5</td><td>29.0</td><td>42.0</td><td>20.0</td><td>18.0</td><td>32.0</td><td>28.0</td><td>27.8</td></tr>
+                    <tr class="highlight-row"><td>Gemini-3-Flash</td><td><strong>46.0</strong></td><td>28.0</td><td><u>38.0</u></td><td><strong>44.0</strong></td><td>40.0</td><td>44.0</td><td><strong>39.6</strong></td></tr>
+                    <tr><td>Gemini-3.1-Pro</td><td><u>40.0</u></td><td>26.0</td><td><strong>44.0</strong></td><td><u>33.0</u></td><td>40.0</td><td><strong>48.0</strong></td><td><u>37.4</u></td></tr>
+
+                    <tr class="group-row"><td colspan="8"><em>Video-specific MLLMs</em></td></tr>
+                    <tr><td>LongVA-7B</td><td>22.0</td><td>18.0</td><td>20.0</td><td>22.0</td><td>20.0</td><td>22.0</td><td>20.6</td></tr>
+                    <tr><td>StreamingVLM</td><td>25.0</td><td>29.0</td><td>21.0</td><td>20.0</td><td>30.0</td><td>32.0</td><td>24.2</td></tr>
+                    <tr><td>InternVideo2.5-8B</td><td>29.0</td><td>27.0</td><td>25.0</td><td>15.0</td><td>32.0</td><td>32.0</td><td>25.6</td></tr>
+                    <tr><td>VideoLLaMA3-8B</td><td>23.0</td><td>31.0</td><td>27.0</td><td>32.0</td><td>38.0</td><td>36.0</td><td>30.0</td></tr>
+                    <tr><td>Molmo2-8B</td><td>36.0</td><td><strong>50.0</strong></td><td>27.0</td><td>25.0</td><td>34.0</td><td>22.0</td><td>33.2</td></tr>
+
+                    <tr class="group-row"><td colspan="8"><em>Agentic Video Frameworks</em></td></tr>
+                    <tr><td>SiLVR</td><td>31.0</td><td>14.0</td><td>27.0</td><td>17.0</td><td>18.0</td><td>28.0</td><td>22.4</td></tr>
+                    <tr><td>Ego-R1</td><td>30.0</td><td>18.0</td><td>23.0</td><td>18.0</td><td><u>48.0</u></td><td>32.0</td><td>25.8</td></tr>
+                    <tr><td>WorldMM</td><td>32.0</td><td>44.0</td><td>21.0</td><td>21.0</td><td>34.0</td><td>36.0</td><td>30.6</td></tr>
+                    <tr><td>AVP</td><td>34.0</td><td>42.0</td><td>31.0</td><td>27.0</td><td>38.0</td><td>34.0</td><td>34.0</td></tr>
+                </tbody>
+            </table>
+        </div>
+        <p class="table-caption">
+            <strong>Table 1: Main benchmark results on EgoMemReason.</strong> Accuracy (%) across three memory types and six
+            capability dimensions: Tracking (Cumulative State Tracking), Counting (Temporal Counting), Ordering
+            (Event Ordering), Linking (Event Linking), Spatial (Spatial Preference Inference), and Activity
+            (Activity Pattern Inference). The best result in each column is <strong>bolded</strong> and the second best is <u>underlined</u>.
+        </p>
+    </div>
+</section>
+
+<!-- ===== Analysis ===== -->
+<section class="section" id="analysis">
+    <div class="container">
+        <h2 class="section-title">Analysis</h2>
+        <p class="section-description">
+            The three memory types fail for fundamentally different reasons, pointing to <em>three orthogonal axes</em>
+            on which long-horizon video understanding must improve.
+        </p>
+
+        <div class="findings-grid">
+            <div class="finding-card entity">
+                <div class="finding-icon"><i class="fa-solid fa-magnifying-glass"></i></div>
+                <h4>Entity &mdash; Fine-Grained Visual Grounding</h4>
+                <p>Models bottlenecked by perceptual precision combined with long-context retention.
+                Text-centric models fall below 25% on Counting; pixel-grounded Molmo2-8B leads all 8B models on both
+                Cumulative State Tracking and Temporal Counting.</p>
+            </div>
+            <div class="finding-card event">
+                <div class="finding-icon"><i class="fa-solid fa-clock-rotate-left"></i></div>
+                <h4>Event &mdash; Long-Range Temporal Coherence</h4>
+                <p>Even the strongest models stay below 45% on both Ordering and Linking. Several video-specific
+                MLLMs are near random on Ordering &mdash; locating one event is solvable, relating many is not.</p>
+            </div>
+            <div class="finding-card behavior">
+                <div class="finding-icon"><i class="fa-solid fa-arrows-spin"></i></div>
+                <h4>Behavior &mdash; Aggregation over Sparse Evidence</h4>
+                <p>Best models stay at 50.0% (Spatial) and 48.0% (Activity). Strong global summarization does not
+                imply the ability to abstract recurring patterns across many sparsely distributed observations.</p>
+            </div>
+        </div>
+
+        <hr class="section-divider">
+
+        <h3 class="subsection-title">Effect of Temporal Certification</h3>
+        <p class="subsection-description">
+            Overall accuracy decreases as the temporal span of required evidence grows &mdash; with sharply different
+            decay patterns across memory types. Event memory shows the sharpest, most monotonic decline.
+        </p>
+
+        <div class="ablation-pair">
+            <div class="table-block">
+                <div class="table-wrapper">
+                    <table class="simple-table">
+                        <thead>
+                            <tr>
+                                <th>Cert. Length (h)</th>
+                                <th>&lt;8</th>
+                                <th>8&ndash;16</th>
+                                <th>16&ndash;32</th>
+                                <th>32+</th>
+                                <th>Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Entity</td><td>28.5</td><td><strong>33.9</strong></td><td>32.1</td><td>30.3</td><td>31.5</td></tr>
+                            <tr><td>Event</td><td>&ndash;</td><td><strong>31.1</strong></td><td>23.0</td><td>13.5</td><td>22.0</td></tr>
+                            <tr><td>Behavioral</td><td>&ndash;</td><td>&ndash;</td><td><strong>43.7</strong></td><td>37.0</td><td>41.0</td></tr>
+                            <tr class="highlight-row"><td>Overall</td><td><strong>40.3</strong></td><td>33.7</td><td>32.5</td><td>23.2</td><td>29.6</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p class="table-caption"><strong>Table 2:</strong> Effect of temporal certification length on accuracy (%) across memory types.
+                Event memory shows the sharpest decline as the evidence span grows.</p>
+            </div>
+
+            <div class="table-block">
+                <h3 class="subsection-title" style="margin-top:0;">Effect of Auxiliary Text</h3>
+                <p class="subsection-description">Captions and transcripts affect each memory type differently &mdash; no
+                configuration meaningfully improves overall performance.</p>
+                <div class="table-wrapper">
+                    <table class="simple-table">
+                        <thead>
+                            <tr>
+                                <th>Trans.</th>
+                                <th>Caption</th>
+                                <th>Entity</th>
+                                <th>Event</th>
+                                <th>Behavior</th>
+                                <th>All</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td><span class="cross">&cross;</span></td><td><span class="cross">&cross;</span></td><td><strong>31.5</strong></td><td><strong>22.0</strong></td><td>41.0</td><td>29.6</td></tr>
+                            <tr><td><span class="cross">&cross;</span></td><td><span class="check">&check;</span></td><td>29.0</td><td>23.0</td><td><strong>46.0</strong></td><td><strong>30.0</strong></td></tr>
+                            <tr><td><span class="check">&check;</span></td><td><span class="cross">&cross;</span></td><td>29.5</td><td>21.0</td><td>45.0</td><td>29.2</td></tr>
+                            <tr><td><span class="check">&check;</span></td><td><span class="check">&check;</span></td><td><strong>31.5</strong></td><td>19.0</td><td>45.0</td><td>29.2</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p class="table-caption"><strong>Table 3:</strong> Effect of auxiliary text inputs (transcripts, captions) on accuracy (%).
+                Behavior is the only type that benefits; Event is consistently hurt by captions.</p>
+            </div>
+        </div>
+
+        <hr class="section-divider">
+
+        <h3 class="subsection-title">Frame Input &amp; Prompting Strategy</h3>
+        <p class="subsection-description">
+            Performance does not improve monotonically with more frames, and chain-of-thought prompting hurts
+            substantially &mdash; indicating that the bottleneck lies in how models encode and retrieve long-horizon
+            visual information rather than in input scale or reasoning strategy.
+        </p>
+        <div class="comparison-grid">
+            <div class="figure-container">
+                <img src="static/frame_ablation.png" alt="Effect of input frame count on per-memory-type accuracy." class="figure-img">
+                <p class="figure-caption" style="text-align:center;"><strong>Figure 6:</strong> Effect of input frames. No single frame budget is optimal across memory types; event memory is least responsive to frame scaling.</p>
+            </div>
+            <div class="figure-container">
+                <img src="static/prompt_ablation.png" alt="Effect of different prompt strategies (Direct QA, ICL, CoT) on accuracy across memory types." class="figure-img">
+                <p class="figure-caption" style="text-align:center;"><strong>Figure 7:</strong> Effect of prompt strategies (Direct QA, ICL, CoT). CoT degrades performance across all memory types &mdash; explicit reasoning amplifies errors when the bottleneck is perception, not deliberation.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== Citation ===== -->
+<section class="section section-alt" id="citation">
+    <div class="container">
+        <h2 class="section-title">Citation</h2>
+        <div class="citation-box">
+            <button class="copy-btn" onclick="copyBibtex()"><i class="fa-regular fa-copy"></i> Copy</button>
+<pre><code>@article{wang2026egomemreason,
+  title={EgoMemReason: A Memory-driven Reasoning Benchmark for Long-Horizon Egocentric Video Understanding},
+  author={Wang, Ziyang and Zhang, Yue and Yu, Shoubin and Zhang, Ce and Zhao, Zengqi and
+          Yoon, Jaehong and Lee, Hyunji and Bertasius, Gedas and Bansal, Mohit},
+  year={2026},
+  journal={arXiv preprint}
+}</code></pre>
+        </div>
+    </div>
+</section>
+
+<!-- ===== Footer ===== -->
+<footer class="footer">
+    <div class="container">
+        <p>EgoMemReason &middot; UNC Chapel Hill &middot; NTU Singapore</p>
+    </div>
+</footer>
+
+<script>
+function copyBibtex() {
+    const code = document.querySelector('.citation-box code').textContent;
+    navigator.clipboard.writeText(code).then(() => {
+        const btn = document.querySelector('.copy-btn');
+        btn.innerHTML = '<i class="fa-solid fa-check"></i> Copied!';
+        setTimeout(() => {
+            btn.innerHTML = '<i class="fa-regular fa-copy"></i> Copy';
+        }, 2000);
+    });
+}
+</script>
+
+</body>
+</html>
