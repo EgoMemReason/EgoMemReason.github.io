@@ -36,8 +36,9 @@
         <p class="equal-contrib"><sup>*</sup>Equal contribution</p>
         <div class="links">
             <a href="#" class="btn" target="_blank"><i class="fa-solid fa-file-lines"></i> Paper</a>
-            <a href="#" class="btn btn-ghost" target="_blank"><i class="fa-brands fa-github"></i> Code</a>
-            <a href="#" class="btn btn-hf" target="_blank"><i class="fa-solid fa-database"></i> Benchmark</a>
+            <a href="https://github.com/Ted412/EgoMemReason" class="btn btn-ghost" target="_blank"><i class="fa-brands fa-github"></i> Code</a>
+            <a href="https://huggingface.co/datasets/Ted412/EgoMemReason" class="btn btn-hf" target="_blank"><i class="fa-solid fa-database"></i> Benchmark</a>
+            <a href="https://huggingface.co/spaces/Ted412/EgoMemReason" class="btn btn-hf" target="_blank"><i class="fa-solid fa-trophy"></i> Leaderboard</a>
         </div>
     </div>
 </section>
@@ -305,6 +306,9 @@
         <p class="section-description">
             We evaluate <strong>17 systems</strong> spanning general-purpose MLLMs, video-specific MLLMs, and agentic
             video frameworks. The strongest model reaches only 39.6% overall &mdash; long-horizon memory is far from solved.
+            <br>
+            <strong>Submit your method</strong> to the public leaderboard:
+            <a href="https://huggingface.co/spaces/Ted412/EgoMemReason" target="_blank">huggingface.co/spaces/Ted412/EgoMemReason</a>.
         </p>
 
         <div class="results-summary">
@@ -354,14 +358,14 @@
                     <tr><td>Qwen-3-VL-8B</td><td>35.0</td><td>28.0</td><td>23.0</td><td>21.0</td><td>40.0</td><td>42.0</td><td>29.6</td></tr>
                     <tr><td>InternVL3.5-38B</td><td>33.0</td><td>40.0</td><td>27.0</td><td>24.0</td><td>46.0</td><td>32.0</td><td>32.6</td></tr>
                     <tr><td>Qwen-3-VL-30B-A3B</td><td>36.0</td><td><u>48.0</u></td><td>25.0</td><td>26.0</td><td>40.0</td><td>30.0</td><td>34.0</td></tr>
-                    <tr><td>Qwen-3-VL-32B</td><td>35.0</td><td>46.0</td><td>28.0</td><td>27.0</td><td><strong>50.0</strong></td><td><u>46.0</u></td><td>36.8</td></tr>
+                    <tr><td>Qwen-3-VL-32B</td><td>35.0</td><td>46.0</td><td>27.0</td><td>27.0</td><td><strong>50.0</strong></td><td><u>46.0</u></td><td>36.8</td></tr>
                     <tr><td>GPT-5</td><td>29.0</td><td>42.0</td><td>20.0</td><td>18.0</td><td>32.0</td><td>28.0</td><td>27.8</td></tr>
-                    <tr class="highlight-row"><td>Gemini-3-Flash</td><td><strong>46.0</strong></td><td>28.0</td><td><u>38.0</u></td><td><strong>44.0</strong></td><td>40.0</td><td>44.0</td><td><strong>39.6</strong></td></tr>
+                    <tr class="highlight-row"><td>Gemini-3-Flash</td><td><strong>46.0</strong></td><td>28.0</td><td><u>36.0</u></td><td><strong>44.0</strong></td><td>44.0</td><td>44.0</td><td><strong>39.6</strong></td></tr>
                     <tr><td>Gemini-3.1-Pro</td><td><u>40.0</u></td><td>26.0</td><td><strong>44.0</strong></td><td><u>33.0</u></td><td>40.0</td><td><strong>48.0</strong></td><td><u>37.4</u></td></tr>
 
                     <tr class="group-row"><td colspan="8"><em>Video-specific MLLMs</em></td></tr>
-                    <tr><td>LongVA-7B</td><td>22.0</td><td>18.0</td><td>20.0</td><td>22.0</td><td>20.0</td><td>22.0</td><td>20.6</td></tr>
-                    <tr><td>StreamingVLM</td><td>25.0</td><td>29.0</td><td>21.0</td><td>20.0</td><td>30.0</td><td>32.0</td><td>24.2</td></tr>
+                    <tr><td>LongVA-7B</td><td>22.0</td><td>18.0</td><td>20.0</td><td>20.0</td><td>20.0</td><td>22.0</td><td>20.6</td></tr>
+                    <tr><td>StreamingVLM</td><td>25.0</td><td>29.0</td><td>21.0</td><td>20.0</td><td>20.0</td><td>32.0</td><td>24.2</td></tr>
                     <tr><td>InternVideo2.5-8B</td><td>29.0</td><td>27.0</td><td>25.0</td><td>15.0</td><td>32.0</td><td>32.0</td><td>25.6</td></tr>
                     <tr><td>VideoLLaMA3-8B</td><td>23.0</td><td>31.0</td><td>27.0</td><td>32.0</td><td>38.0</td><td>36.0</td><td>30.0</td></tr>
                     <tr><td>Molmo2-8B</td><td>36.0</td><td><strong>50.0</strong></td><td>27.0</td><td>25.0</td><td>34.0</td><td>22.0</td><td>33.2</td></tr>
