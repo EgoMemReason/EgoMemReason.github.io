@@ -60,9 +60,17 @@ a:hover {
 }
 
 /* ===== Hero ===== */
+/* tighten the gap between the hero block and the first (teaser) section */
+#overview {
+    padding-top: 12px;
+}
+#overview .figure-container {
+    margin-top: 0;
+}
+
 .hero {
     text-align: center;
-    padding: 80px 24px 60px;
+    padding: 80px 24px 32px;
     background: linear-gradient(135deg, #f0f4ff 0%, #faf5ff 50%, #f0fdfa 100%);
     border-bottom: 1px solid var(--border);
 }
@@ -316,17 +324,17 @@ a:hover {
 }
 
 .main-results-table .group-row td {
-    background: var(--bg-alt);
+    background: #e5e7eb;
     color: var(--text-secondary);
-    font-weight: 600;
+    font-weight: 700;
     text-align: left;
-    padding: 6px 14px;
-    border-top: 2px solid var(--border);
-    border-bottom: 1px solid var(--border);
+    padding: 7px 14px;
+    border-top: 2px solid #cbd2da;
+    border-bottom: 1px solid #cbd2da;
 }
 
 .main-results-table .group-row:hover td {
-    background: var(--bg-alt);
+    background: #e5e7eb;
 }
 
 .main-results-table u {
@@ -657,6 +665,7 @@ a:hover {
     grid-template-columns: 1fr 1fr;
     gap: 28px;
     margin-top: 16px;
+    align-items: start;
 }
 
 .ablation-pair .table-block { min-width: 0; }
