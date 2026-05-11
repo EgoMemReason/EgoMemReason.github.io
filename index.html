@@ -280,14 +280,11 @@
 
         <div class="pipeline-bottom">
             <div class="figure-container">
-                <img src="static/pipeline.png" alt="Four-stage benchmark construction pipeline." class="figure-img">
-                <p class="figure-caption" style="text-align:center;"><strong>Figure 4:</strong> Overview of the 4-stage benchmark construction pipeline.</p>
+                <img src="static/donut.png" alt="EgoMemReason dataset composition by memory type." class="figure-img">
+                <p class="figure-caption" style="text-align:center;"><strong>Figure 4:</strong> Dataset composition by memory type.</p>
             </div>
             <div class="pipeline-stats">
                 <h3>Dataset Composition</h3>
-                <div class="figure-container" style="margin-bottom: 14px;">
-                    <img src="static/donut.png" alt="EgoMemReason dataset composition by memory type." class="figure-img">
-                </div>
                 <ul>
                     <li><strong>500</strong> multiple-choice questions</li>
                     <li><strong>200</strong> Entity &middot; <strong>200</strong> Event &middot; <strong>100</strong> Behavior</li>
@@ -420,14 +417,13 @@
 
         <hr class="section-divider">
 
-        <h3 class="subsection-title">Effect of Temporal Certification</h3>
-        <p class="subsection-description">
-            Overall accuracy decreases as the temporal span of required evidence grows &mdash; with sharply different
-            decay patterns across memory types. Event memory shows the sharpest, most monotonic decline.
-        </p>
-
         <div class="ablation-pair">
             <div class="table-block">
+                <h3 class="subsection-title" style="margin-top:0;">Effect of Temporal Certification</h3>
+                <p class="subsection-description">
+                    Overall accuracy decreases as the temporal span of required evidence grows &mdash; with sharply different
+                    decay patterns across memory types. Event memory shows the sharpest, most monotonic decline.
+                </p>
                 <div class="table-wrapper">
                     <table class="simple-table">
                         <thead>
