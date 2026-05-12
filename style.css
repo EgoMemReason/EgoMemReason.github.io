@@ -229,6 +229,157 @@ a:hover {
     margin-right: auto;
 }
 
+/* ===== Figure 1 teaser (in-page rebuild) ===== */
+.fig1 {
+    position: relative;
+    max-width: 1040px;
+    margin: 0 auto;
+    padding: 4px 0 8px;
+}
+
+.fig1-lines {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.fig1-top {
+    display: flex;
+    gap: 24px;
+    align-items: flex-start;
+    margin-bottom: 32px;          /* compact; connector routing keeps the lines clear of the bubbles */
+}
+.fig1-bottom {
+    display: flex;
+    justify-content: center;
+    margin-top: 32px;             /* behavior box pulled up — less dead space below the timeline */
+}
+
+.fig1-bubble {
+    position: relative;
+    z-index: 2;
+    flex: 1;
+    text-align: left;
+    border-radius: 14px;
+    padding: 12px 16px 14px;
+    font-size: 0.82rem;
+    line-height: 1.45;
+    box-shadow: var(--shadow);
+}
+.fig1-bottom .fig1-bubble { flex: 0 1 660px; }
+
+.fig1-bubble .bub-tag {
+    display: inline-block;
+    font-weight: 700;
+    font-size: 0.86rem;
+    margin-bottom: 4px;
+}
+.fig1-bubble .bub-time {
+    font-size: 0.74rem;
+    color: var(--text-secondary);
+    margin: 0 0 4px;
+}
+.fig1-bubble .bub-q { margin: 0 0 6px; }
+.fig1-bubble .bub-opts { margin: 0; color: var(--text-secondary); }
+.fig1-bubble .bub-ans { font-weight: 700; }
+
+.bubble-event { background: var(--event-bg); border: 1px solid var(--event); }
+.bubble-event .bub-tag, .bubble-event .bub-ans { color: var(--event); }
+.bubble-entity { background: var(--entity-bg); border: 1px solid var(--entity); }
+.bubble-entity .bub-tag, .bubble-entity .bub-ans { color: var(--entity); }
+.bubble-behavior { background: var(--behavior-bg); border: 1px solid var(--behavior); }
+.bubble-behavior .bub-tag, .bubble-behavior .bub-ans { color: var(--behavior); }
+
+.fig1-rail { position: relative; z-index: 2; }
+
+/* Timeline split into per-day segments; "Day N" centered under its frame(s). */
+.fig1-days {
+    display: flex;
+    align-items: stretch;
+}
+.fig1-day {
+    flex: var(--n, 1) 1 0;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+}
+.fig1-day + .fig1-day {
+    border-left: 1px dashed #b9c2cd;          /* the day boundary */
+}
+.fig1-day-frames {
+    display: flex;
+    gap: 6px;
+    padding: 0 6px;                            /* keep frames clear of the boundary line */
+    flex: 1;
+    align-items: flex-start;
+}
+.fig1-day-label {
+    margin-top: 8px;
+    padding-top: 7px;
+    border-top: 2px solid var(--border);      /* adjacent labels butt together → one timeline rule */
+    text-align: center;
+    font-size: 0.74rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+}
+
+.fig1-frame {
+    margin: 0;
+    flex: 1 1 0;
+    min-width: 0;
+}
+.fig1-frame img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    display: block;
+}
+.fig1-frame figcaption {
+    margin-top: 4px;
+    font-size: 0.64rem;
+    line-height: 1.2;
+    text-align: center;
+    color: var(--text-secondary);
+    font-family: 'JetBrains Mono', monospace;
+}
+
+.fig1-badges {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px 28px;
+    margin-top: 20px;
+    padding: 10px 16px;
+    background: var(--bg-alt);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text);
+}
+
+@media (max-width: 760px) {
+    .fig1-top { flex-direction: column; gap: 14px; margin-bottom: 18px; }
+    .fig1-bottom { margin-top: 18px; }
+    .fig1-bottom .fig1-bubble { flex: 1; }
+    .fig1-days {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        padding-bottom: 6px;
+        -webkit-overflow-scrolling: touch;
+    }
+    .fig1-day { flex: 0 0 auto; }
+    .fig1-day-frames { gap: 6px; }
+    .fig1-frame { flex: 0 0 26vw; }
+    .fig1-day-label { font-size: 0.68rem; }
+}
+
 /* ===== Tables ===== */
 .table-wrapper {
     overflow-x: auto;

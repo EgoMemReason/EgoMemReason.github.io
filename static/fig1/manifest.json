@@ -1,0 +1,192 @@
+[
+  {
+    "out": "day1_141723.gif",
+    "day": "DAY1",
+    "label": "14:17:23",
+    "wearer": "A5_KATRINA",
+    "nframes": 3,
+    "center_time": 14172300,
+    "diff_s": 0.0,
+    "res": [
+      384,
+      384
+    ],
+    "size_kb": 262.4,
+    "paths": [
+      "/nas-ssd2/video_datasets/EgoLife/egolife_frames/DAY1_A5_KATRINA_14170000/frame_0022.jpg",
+      "/nas-ssd2/video_datasets/EgoLife/egolife_frames/DAY1_A5_KATRINA_14170000/frame_0023.jpg",
+      "/nas-ssd2/video_datasets/EgoLife/egolife_frames/DAY1_A5_KATRINA_14170000/frame_0024.jpg"
+    ]
+  },
+  {
+    "out": "day2_155853.gif",
+    "day": "DAY2",
+    "label": "15:58:53",
+    "wearer": "A6_SHURE",
+    "nframes": 3,
+    "center_time": 15585300,
+    "diff_s": 0.0,
+    "res": [
+      384,
+      384
+    ],
+    "size_kb": 199.8,
+    "paths": [
+      "/nas-ssd2/video_datasets/EgoLife/egolife_frames/DAY2_A6_SHURE_15583000/frame_0022.jpg",
+      "/nas-ssd2/video_datasets/EgoLife/egolife_frames/DAY2_A6_SHURE_15583000/frame_0023.jpg",
+      "/nas-ssd2/video_datasets/EgoLife/egolife_frames/DAY2_A6_SHURE_15583000/frame_0024.jpg"
+    ]
+  },
+  {
+    "out": "day2_182339.gif",
+    "day": "DAY2",
+    "label": "18:23:39",
+    "wearer": "A6_SHURE",
+    "nframes": 3,
+    "center_time": 18233900,
+    "diff_s": 0.0,
+    "res": [
+      384,
+      384
+    ],
+    "size_kb": 263.0,
+    "paths": [
+      "/nas-ssd2/video_datasets/EgoLife/egolife_frames/DAY2_A6_SHURE_18233000/frame_0008.jpg",
+      "/nas-ssd2/video_datasets/EgoLife/egolife_frames/DAY2_A6_SHURE_18233000/frame_0009.jpg",
+      "/nas-ssd2/video_datasets/EgoLife/egolife_frames/DAY2_A6_SHURE_18233000/frame_0010.jpg"
+    ]
+  },
+  {
+    "out": "day3_120120.gif",
+    "day": "DAY3",
+    "label": "12:01:20",
+    "wearer": "A6_SHURE",
+    "nframes": 3,
+    "center_time": 12012000,
+    "diff_s": 0.0,
+    "res": [
+      384,
+      384
+    ],
+    "size_kb": 251.5,
+    "paths": [
+      "/nas-ssd2/video_datasets/EgoLife/egolife_frames/DAY3_A6_SHURE_12010000/frame_0019.jpg",
+      "/nas-ssd2/video_datasets/EgoLife/egolife_frames/DAY3_A6_SHURE_12010000/frame_0020.jpg",
+      "/nas-ssd2/video_datasets/EgoLife/egolife_frames/DAY3_A6_SHURE_12010000/frame_0021.jpg"
+    ]
+  },
+  {
+    "out": "day3_212233.gif",
+    "day": "DAY3",
+    "label": "21:22:33",
+    "wearer": "A6_SHURE",
+    "nframes": 3,
+    "center_time": 21223300,
+    "diff_s": 0.0,
+    "res": [
+      384,
+      384
+    ],
+    "size_kb": 214.2,
+    "paths": [
+      "/nas-ssd2/video_datasets/EgoLife/egolife_frames/DAY3_A6_SHURE_21223000/frame_0002.jpg",
+      "/nas-ssd2/video_datasets/EgoLife/egolife_frames/DAY3_A6_SHURE_21223000/frame_0003.jpg",
+      "/nas-ssd2/video_datasets/EgoLife/egolife_frames/DAY3_A6_SHURE_21223000/frame_0004.jpg"
+    ]
+  },
+  {
+    "out": "day4_105035.gif",
+    "day": "DAY4",
+    "label": "10:50:35",
+    "wearer": "A6_SHURE",
+    "nframes": 3,
+    "center_time": 10503500,
+    "diff_s": 0.0,
+    "res": [
+      384,
+      384
+    ],
+    "size_kb": 219.5,
+    "paths": [
+      "/nas-ssd2/video_datasets/EgoLife/egolife_frames/DAY4_A6_SHURE_10503000/frame_0004.jpg",
+      "/nas-ssd2/video_datasets/EgoLife/egolife_frames/DAY4_A6_SHURE_10503000/frame_0005.jpg",
+      "/nas-ssd2/video_datasets/EgoLife/egolife_frames/DAY4_A6_SHURE_10503000/frame_0006.jpg"
+    ]
+  },
+  {
+    "out": "day4_132725.gif",
+    "day": "DAY4",
+    "label": "13:27:25",
+    "wearer": "A6_SHURE",
+    "nframes": 3,
+    "center_time": 13272500,
+    "diff_s": 0.0,
+    "res": [
+      384,
+      384
+    ],
+    "size_kb": 231.5,
+    "paths": [
+      "/nas-ssd2/video_datasets/EgoLife/egolife_frames/DAY4_A6_SHURE_13270000/frame_0024.jpg",
+      "/nas-ssd2/video_datasets/EgoLife/egolife_frames/DAY4_A6_SHURE_13270000/frame_0025.jpg",
+      "/nas-ssd2/video_datasets/EgoLife/egolife_frames/DAY4_A6_SHURE_13270000/frame_0026.jpg"
+    ]
+  },
+  {
+    "out": "day5_120758.gif",
+    "day": "DAY5",
+    "label": "12:07:58",
+    "wearer": "A5_KATRINA",
+    "nframes": 3,
+    "center_time": 12075800,
+    "diff_s": 0.0,
+    "res": [
+      384,
+      384
+    ],
+    "size_kb": 191.2,
+    "paths": [
+      "/nas-ssd2/video_datasets/EgoLife/egolife_frames/DAY5_A5_KATRINA_12073000/frame_0027.jpg",
+      "/nas-ssd2/video_datasets/EgoLife/egolife_frames/DAY5_A5_KATRINA_12073000/frame_0028.jpg",
+      "/nas-ssd2/video_datasets/EgoLife/egolife_frames/DAY5_A5_KATRINA_12073000/frame_0029.jpg"
+    ]
+  },
+  {
+    "out": "day6_192049.gif",
+    "day": "DAY6",
+    "label": "19:20:49",
+    "wearer": "A6_SHURE",
+    "nframes": 3,
+    "center_time": 19204900,
+    "diff_s": 0.0,
+    "res": [
+      384,
+      384
+    ],
+    "size_kb": 240.2,
+    "paths": [
+      "/nas-ssd2/video_datasets/EgoLife/egolife_frames/DAY6_A6_SHURE_19203000/frame_0018.jpg",
+      "/nas-ssd2/video_datasets/EgoLife/egolife_frames/DAY6_A6_SHURE_19203000/frame_0019.jpg",
+      "/nas-ssd2/video_datasets/EgoLife/egolife_frames/DAY6_A6_SHURE_19203000/frame_0020.jpg"
+    ]
+  },
+  {
+    "out": "day7_120824.gif",
+    "day": "DAY7",
+    "label": "12:08:24",
+    "wearer": "A5_KATRINA",
+    "nframes": 3,
+    "center_time": 12082400,
+    "diff_s": 0.0,
+    "res": [
+      384,
+      384
+    ],
+    "size_kb": 260.1,
+    "paths": [
+      "/nas-ssd2/video_datasets/EgoLife/egolife_frames/DAY7_A5_KATRINA_12080000/frame_0023.jpg",
+      "/nas-ssd2/video_datasets/EgoLife/egolife_frames/DAY7_A5_KATRINA_12080000/frame_0024.jpg",
+      "/nas-ssd2/video_datasets/EgoLife/egolife_frames/DAY7_A5_KATRINA_12080000/frame_0025.jpg"
+    ]
+  }
+]

@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css?v=2">
+    <link rel="stylesheet" href="style.css?v=7">
 </head>
 <body>
 
@@ -35,7 +35,7 @@
         </div>
         <p class="equal-contrib"><sup>*</sup>Equal contribution</p>
         <div class="links">
-            <a href="#" class="btn" target="_blank"><i class="fa-solid fa-file-lines"></i> Paper</a>
+            <a href="https://arxiv.org/abs/2605.09874" class="btn" target="_blank"><i class="fa-solid fa-file-lines"></i> Paper</a>
             <a href="https://github.com/Ziyang412/EgoMemReason" class="btn btn-ghost" target="_blank"><i class="fa-brands fa-github"></i> Code</a>
             <a href="https://huggingface.co/datasets/Ted412/EgoMemReason" class="btn btn-hf" target="_blank"><i class="fa-solid fa-database"></i> Benchmark</a>
             <a href="https://huggingface.co/spaces/Ted412/EgoMemReason" class="btn btn-hf" target="_blank"><i class="fa-solid fa-trophy"></i> Leaderboard</a>
@@ -47,7 +47,89 @@
 <section class="section" id="overview">
     <div class="container">
         <div class="figure-container">
-            <img src="static/teaser.png" alt="EgoMemReason teaser: queries over a week-long egocentric video timeline spanning entity, event, and behavior memory." class="figure-img">
+            <div class="fig1" id="fig1">
+                <svg class="fig1-lines" id="fig1Lines" aria-hidden="true"></svg>
+
+                <div class="fig1-top">
+                    <div class="fig1-bubble bubble-event" data-bubble="event">
+                        <span class="bub-tag">Event Memory</span>
+                        <p class="bub-time">Query Time: Day 4, 10:50:35</p>
+                        <p class="bub-q"><strong>Question:</strong> Outside of mealtimes, what was the last group activity we did in the projector room?</p>
+                        <p class="bub-opts">A. Presenting slides &nbsp; <strong class="bub-ans">B. Learning dance</strong> &nbsp; C. Chatting &nbsp; D. Preparing food &nbsp; E. Watching movies</p>
+                    </div>
+                    <div class="fig1-bubble bubble-entity" data-bubble="entity">
+                        <span class="bub-tag">Entity Memory</span>
+                        <p class="bub-time">Query Time: Day 4, 13:27:25</p>
+                        <p class="bub-q"><strong>Question:</strong> What other food have we eaten on this table before?</p>
+                        <p class="bub-opts">A. BBQ, pizza &nbsp; B. Hotpot, pizza, KFC &nbsp; <strong class="bub-ans">C. Hotpot, pizza</strong> &nbsp; D. Pizza, KFC</p>
+                    </div>
+                </div>
+
+                <div class="fig1-rail">
+                    <div class="fig1-days">
+                        <div class="fig1-day" style="--n:1">
+                            <div class="fig1-day-frames">
+                                <figure class="fig1-frame" data-frame="day1_141723"><img src="static/fig1/day1_141723.gif" loading="lazy" alt="DAY1 14:17:23 egocentric frames"><figcaption>14:17:23</figcaption></figure>
+                            </div>
+                            <div class="fig1-day-label">Day 1</div>
+                        </div>
+                        <div class="fig1-day" style="--n:2">
+                            <div class="fig1-day-frames">
+                                <figure class="fig1-frame" data-frame="day2_155853"><img src="static/fig1/day2_155853.gif" loading="lazy" alt="DAY2 15:58:53 egocentric frames"><figcaption>15:58:53</figcaption></figure>
+                                <figure class="fig1-frame" data-frame="day2_182339"><img src="static/fig1/day2_182339.gif" loading="lazy" alt="DAY2 18:23:39 egocentric frames"><figcaption>18:23:39</figcaption></figure>
+                            </div>
+                            <div class="fig1-day-label">Day 2</div>
+                        </div>
+                        <div class="fig1-day" style="--n:2">
+                            <div class="fig1-day-frames">
+                                <figure class="fig1-frame" data-frame="day3_120120"><img src="static/fig1/day3_120120.gif" loading="lazy" alt="DAY3 12:01:20 egocentric frames"><figcaption>12:01:20</figcaption></figure>
+                                <figure class="fig1-frame" data-frame="day3_212233"><img src="static/fig1/day3_212233.gif" loading="lazy" alt="DAY3 21:22:33 egocentric frames"><figcaption>21:22:33</figcaption></figure>
+                            </div>
+                            <div class="fig1-day-label">Day 3</div>
+                        </div>
+                        <div class="fig1-day" style="--n:2">
+                            <div class="fig1-day-frames">
+                                <figure class="fig1-frame" data-frame="day4_105035"><img src="static/fig1/day4_105035.gif" loading="lazy" alt="DAY4 10:50:35 egocentric frames"><figcaption>10:50:35</figcaption></figure>
+                                <figure class="fig1-frame" data-frame="day4_132725"><img src="static/fig1/day4_132725.gif" loading="lazy" alt="DAY4 13:27:25 egocentric frames"><figcaption>13:27:25</figcaption></figure>
+                            </div>
+                            <div class="fig1-day-label">Day 4</div>
+                        </div>
+                        <div class="fig1-day" style="--n:1">
+                            <div class="fig1-day-frames">
+                                <figure class="fig1-frame" data-frame="day5_120758"><img src="static/fig1/day5_120758.gif" loading="lazy" alt="DAY5 12:07:58 egocentric frames"><figcaption>12:07:58</figcaption></figure>
+                            </div>
+                            <div class="fig1-day-label">Day 5</div>
+                        </div>
+                        <div class="fig1-day" style="--n:1">
+                            <div class="fig1-day-frames">
+                                <figure class="fig1-frame" data-frame="day6_192049"><img src="static/fig1/day6_192049.gif" loading="lazy" alt="DAY6 19:20:49 egocentric frames"><figcaption>19:20:49</figcaption></figure>
+                            </div>
+                            <div class="fig1-day-label">Day 6</div>
+                        </div>
+                        <div class="fig1-day" style="--n:1">
+                            <div class="fig1-day-frames">
+                                <figure class="fig1-frame" data-frame="day7_120824"><img src="static/fig1/day7_120824.gif" loading="lazy" alt="DAY7 12:08:24 egocentric frames"><figcaption>12:08:24</figcaption></figure>
+                            </div>
+                            <div class="fig1-day-label">Day 7</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="fig1-bottom">
+                    <div class="fig1-bubble bubble-behavior" data-bubble="behavior">
+                        <span class="bub-tag">Behavior Memory</span>
+                        <p class="bub-time">Query Time: Day 7, 13:00:00</p>
+                        <p class="bub-q"><strong>Question:</strong> Where do we usually have meals together?</p>
+                        <p class="bub-opts">A. The table outside &nbsp; B. Gingham table &nbsp; <strong class="bub-ans">C. The orange table</strong> &nbsp; D. My desk &nbsp; E. In restaurant</p>
+                    </div>
+                </div>
+
+                <div class="fig1-badges">
+                    <span>&#9989; Multi-type Memory</span>
+                    <span>&#9989; Long-range Reasoning (week-long)</span>
+                    <span>&#9989; Multi-evidence Aggregation</span>
+                </div>
+            </div>
             <p class="figure-caption">
                 <strong>Figure 1: Illustration of EgoMemReason for week-long egocentric video memory.</strong>
                 Given a query at a specific time, answering requires retrieving and aggregating evidence from
@@ -504,12 +586,14 @@
         <h2 class="section-title">Citation</h2>
         <div class="citation-box">
             <button class="copy-btn" onclick="copyBibtex()"><i class="fa-regular fa-copy"></i> Copy</button>
-<pre><code>@article{wang2026egomemreason,
-  title={EgoMemReason: A Memory-driven Reasoning Benchmark for Long-Horizon Egocentric Video Understanding},
-  author={Wang, Ziyang and Zhang, Yue and Yu, Shoubin and Zhang, Ce and Zhao, Zengqi and
-          Yoon, Jaehong and Lee, Hyunji and Bertasius, Gedas and Bansal, Mohit},
-  year={2026},
-  journal={arXiv preprint}
+<pre><code>@misc{wang2026egomemreasonmemorydrivenreasoningbenchmark,
+      title={EgoMemReason: A Memory-Driven Reasoning Benchmark for Long-Horizon Egocentric Video Understanding},
+      author={Ziyang Wang and Yue Zhang and Shoubin Yu and Ce Zhang and Zengqi Zhao and Jaehong Yoon and Hyunji Lee and Gedas Bertasius and Mohit Bansal},
+      year={2026},
+      eprint={2605.09874},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV},
+      url={https://arxiv.org/abs/2605.09874},
 }</code></pre>
         </div>
     </div>
@@ -533,6 +617,134 @@ function copyBibtex() {
         }, 2000);
     });
 }
+
+// ===== Figure 1: draw connector lines between memory bubbles and timeline frames =====
+(function () {
+    var LINKS = {
+        event:    ['day2_155853', 'day2_182339', 'day3_120120', 'day4_105035'],            // frames #2,3,4,6
+        entity:   ['day2_182339', 'day3_120120', 'day4_132725'],                            // frames #3,4,7
+        behavior: ['day1_141723', 'day2_182339', 'day3_120120', 'day3_212233',
+                   'day4_105035', 'day4_132725', 'day5_120758', 'day6_192049', 'day7_120824']  // #1,3,4,5,6,7,8,9,10
+    };
+    var COLORS = { event: '#10b981', entity: '#3b82f6', behavior: '#a855f7' };
+
+    function draw() {
+        var fig = document.getElementById('fig1');
+        var svg = document.getElementById('fig1Lines');
+        if (!fig || !svg) return;
+        var box = fig.getBoundingClientRect();
+        var w = fig.clientWidth, h = fig.clientHeight;
+        svg.setAttribute('width', w);
+        svg.setAttribute('height', h);
+        svg.setAttribute('viewBox', '0 0 ' + w + ' ' + h);
+        while (svg.firstChild) svg.removeChild(svg.firstChild);
+        if (w < 760) return; // skip lines on narrow / stacked layout
+
+        function rel(el) {
+            var r = el.getBoundingClientRect();
+            return { x: r.left - box.left, y: r.top - box.top, w: r.width, h: r.height };
+        }
+        var GAP = 6;                                       // px gap between a line end and the box / rail edge
+
+        // Which "top" bubbles (whose dots land at the same spot — the image top) touch each frame.
+        // A frame touched by >1 of them is a "joint node": draw a separate, slightly-offset dot per bubble.
+        var TOP_KEYS = ['event', 'entity'];
+        var topAt = {};
+        TOP_KEYS.forEach(function (k) {
+            (LINKS[k] || []).forEach(function (fid) {
+                (topAt[fid] = topAt[fid] || []).push(k);
+            });
+        });
+
+        Object.keys(LINKS).forEach(function (key) {
+            var bubble = fig.querySelector('.fig1-bubble[data-bubble="' + key + '"]');
+            if (!bubble) return;
+            var b = rel(bubble);
+            var fromBelow = key === 'behavior';            // behavior sits under the rail
+            // Start every line just OUTSIDE the bubble edge facing the rail.
+            var by = fromBelow ? b.y - GAP : b.y + b.h + GAP;
+
+            // Collect this bubble's targets (centre x of the frame image, end y, frame id, day geometry).
+            var targets = [];
+            LINKS[key].forEach(function (fid) {
+                var fr = fig.querySelector('.fig1-frame[data-frame="' + fid + '"]');
+                if (!fr) return;
+                var img = fr.querySelector('img') || fr;
+                var f = rel(img);                          // image rect → horizontal centre
+                var fy, dc = null, dw = 0;
+                if (fromBelow) {
+                    var figR = rel(fr);                    // whole <figure> incl. the timestamp caption
+                    fy = figR.y + figR.h + GAP;            // just below the timestamp
+                    var dayEl = fr.closest('.fig1-day');
+                    if (dayEl) { var dR = rel(dayEl); dc = dR.x + dR.w / 2; dw = dR.w; }  // "Day N" label centre
+                } else {
+                    fy = f.y - GAP;                        // just above the image, clear of the bubble
+                }
+                targets.push({ fx: f.x + f.w / 2, fy: fy, fid: fid, dc: dc, dw: dw });
+            });
+            if (!targets.length) return;
+            // Sort left→right and spread the anchor points evenly along the bubble edge in the
+            // same order — so a bubble's own lines never cross each other, and the layout is uniform.
+            targets.sort(function (p, q) { return p.fx - q.fx; });
+            var n = targets.length;
+            var ax0 = b.x + 16, ax1 = b.x + b.w - 16;
+
+            targets.forEach(function (t, i) {
+                var bx = n === 1 ? (ax0 + ax1) / 2 : ax0 + (ax1 - ax0) * i / (n - 1);
+                var ex = t.fx;
+                if (fromBelow) {
+                    // Keep the behavior line clear of the centred "Day N" label: if the frame
+                    // sits near its day-segment centre, nudge the line/dot ~24px to one side.
+                    if (t.dc !== null && Math.abs(t.fx - t.dc) < 24) {
+                        var pad = Math.min(24, t.dw / 2 - 6);
+                        ex = t.dc + (bx >= t.dc ? pad : -pad);
+                    }
+                } else if (topAt[t.fid] && topAt[t.fid].length > 1) {
+                    // Joint node: another top bubble also points here → fan the two dots apart.
+                    var lst = topAt[t.fid];
+                    ex = t.fx + (lst.indexOf(key) - (lst.length - 1) / 2) * 9;
+                }
+                var span = t.fy - by;                                  // signed (negative for the behavior bubble)
+                var fan, f2;
+                if (fromBelow) {
+                    // Push the sideways bend low (well below the "Day N" label band) so the line
+                    // descends vertically through that band, beside the label text.
+                    fan = 0.20; f2 = 0.40;
+                } else {
+                    var horiz = Math.abs(ex - bx) / Math.max(w, 1);    // fraction of width travelled sideways
+                    fan = Math.min(0.82, 0.40 + horiz * 1.4);          // longer sideways travel → sweep lower
+                    f2 = 0.94;                                          // bend finishes near the frame top
+                }
+                var c1y = by + span * fan;                             // control 1 stays at x = bx
+                var c2y = by + span * f2;                              // control 2 at x = ex
+                var d = 'M ' + bx + ' ' + by + ' C ' + bx + ' ' + c1y + ' ' + ex + ' ' + c2y + ' ' + ex + ' ' + t.fy;
+                var path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+                path.setAttribute('d', d);
+                path.setAttribute('fill', 'none');
+                path.setAttribute('stroke', COLORS[key]);
+                path.setAttribute('stroke-width', '1.8');
+                path.setAttribute('stroke-linecap', 'round');
+                path.setAttribute('opacity', '0.55');
+                svg.appendChild(path);
+                var dot = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+                dot.setAttribute('cx', ex);
+                dot.setAttribute('cy', t.fy);
+                dot.setAttribute('r', '3');
+                dot.setAttribute('fill', COLORS[key]);
+                dot.setAttribute('stroke', '#fff');
+                dot.setAttribute('stroke-width', '1');
+                svg.appendChild(dot);
+            });
+        });
+    }
+    var raf;
+    function schedule() { cancelAnimationFrame(raf); raf = requestAnimationFrame(draw); }
+    window.addEventListener('load', schedule);
+    window.addEventListener('resize', schedule);
+    document.addEventListener('DOMContentLoaded', schedule);
+    setTimeout(schedule, 400);
+    setTimeout(schedule, 1500);
+})();
 </script>
 
 </body>
