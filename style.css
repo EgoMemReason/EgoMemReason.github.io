@@ -94,6 +94,25 @@ a:hover {
     background-clip: text;
 }
 
+.venue {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin: -8px auto 24px;
+    padding: 6px 16px;
+    border-radius: 999px;
+    background: linear-gradient(135deg, #3b82f6, #7c3aed);
+    color: #fff;
+    font-size: 0.92rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    box-shadow: 0 4px 14px rgba(124, 58, 237, 0.25);
+}
+
+.venue i {
+    font-size: 0.9rem;
+}
+
 .authors {
     margin-bottom: 10px;
     font-size: 1.05rem;
