@@ -144,6 +144,25 @@
     </div>
 </section>
 
+<!-- ===== Benchmark revision notice ===== -->
+<section class="section" id="revision-notice" style="padding: 8px 0 24px;">
+    <div class="container">
+        <div class="revision-callout" role="alert" style="border: 1px solid #f5c518; background: #fff8e1; color: #4a3800; border-radius: 10px; padding: 14px 18px; font-size: 0.95rem; line-height: 1.5;">
+            <strong>⚠️ Benchmark revision — v1.1 (2026-07-13).</strong>
+            The per-question option-letter mapping in <code>annotations_public.jsonl</code>
+            has been <strong>reshuffled</strong>. If you downloaded the benchmark
+            <strong>before 2026-07-13</strong>, please
+            <a href="https://huggingface.co/datasets/Ted412/EgoMemReason" target="_blank"
+               style="color: #1a5490; text-decoration: underline;">re-download</a>
+            it before your next evaluation run — letters A–J now map to different option
+            strings. Question text and the set of option strings per question are
+            unchanged, so previously reported aggregate scores from published models
+            remain valid; but any locally-stored letter-only predictions must be
+            remapped (or the model re-run) before being submitted to the leaderboard.
+        </div>
+    </div>
+</section>
+
 <!-- ===== Abstract ===== -->
 <section class="section section-alt" id="abstract">
     <div class="container">
@@ -463,6 +482,19 @@
             capability dimensions: Tracking (Cumulative State Tracking), Counting (Temporal Counting), Ordering
             (Event Ordering), Linking (Event Linking), Spatial (Spatial Preference Inference), and Activity
             (Activity Pattern Inference). The best result in each column is <strong>bolded</strong> and the second best is <u>underlined</u>.
+        </p>
+        <p class="table-caption" style="margin-top: 12px;">
+            <strong>Want your model on the leaderboard?</strong>
+            The <a href="https://huggingface.co/spaces/Ted412/EgoMemReason" target="_blank">public leaderboard</a>
+            is curated by hand — every entry has been personally scored by the maintainer.
+            Run your model on the 500 public questions
+            (<a href="https://huggingface.co/datasets/Ted412/EgoMemReason" target="_blank">Ted412/EgoMemReason</a>),
+            format your predictions as
+            <code>[{"example_id": 1, "predicted_answer": "A"}, ...]</code>,
+            and email the file to
+            <a href="mailto:ziyangw@cs.unc.edu">ziyangw@cs.unc.edu</a>
+            with method + team name, model size, video-input modality,
+            a one-sentence description, and project/paper links. Turnaround: ~5 business days.
         </p>
     </div>
 </section>
